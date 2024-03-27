@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const local = "mongodb+srv://duylh17:sbisF6McsDcjT4RF@cluster0.0n8qgpd.mongodb.net/md18305";
+const local = "mongodb+srv://duylh17:mt6AGJeNrN7cuPay@cluster0.0n8qgpd.mongodb.net/md18306";
 
 const connect = async () => {
     try {
