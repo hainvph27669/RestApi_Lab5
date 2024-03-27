@@ -38,15 +38,19 @@ router.get('/get-all-fruit', async (req, res) => {
 router.post('/add-distributor', async (req, res) => {
     try {
         const data = req.body;
+        console.log(data)
         const newDistributors = new Distributors({
             name: data.name
         });
         const result = await newDistributors.save();
+
+        const list = await Distributors.find().populate();
+
         if (result) {
             res.json({
                 "status": 200,
                 "messenger": "Thêm thành công",
-                "data": result
+                "data": list
             })
         } else {
             res.json({
@@ -250,10 +254,12 @@ router.put('/update-distributor-by-id/:id', async (req, res) => {
             result = await updateDistributor.save();
         }
         if (result) {
+
+            const list = await Distributors.find().populate();
             res.json({
                 'status': 200,
                 'messenger': 'Cập nhật thành công',
-                'data': result
+                'data': list
             })
         } else {
             res.json({
@@ -295,10 +301,12 @@ router.delete('/destroy-distributor-by-id/:id', async (req, res) => {
         const { id } = req.params
         const result = await Distributors.findByIdAndDelete(id);
         if (result) {
+
+            const list = await Distributors.find().populate();
             res.json({
                 "status": 200,
                 "messenger": "Xóa thành công",
-                "data": result
+                "data": list
             })
         } else {
             res.json({
